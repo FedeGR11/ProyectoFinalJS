@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS de Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- JS de Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+    <!-- JS de SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+   
+    <script src="js/storage.js" defer></script>
+    <script src="js/ui.js" defer></script>
+
+    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Mi Tienda</title>
+</head>
+
+<body>
+    <h1 id="titulo">Mi Tienda</h1>
+
+    <div class="controles">
+        <div class="fila-superior">
+            <input id="input-nombre" placeholder="Nombre del producto">
+            <input type="number" id="input-precio" placeholder="Precio">
+            <input type="number" id="input-stock" placeholder="Cantidad">
+            <button id="btn-agregar">Agregar</button>
+        </div>
+
+        <input id="input-busqueda" placeholder="Buscar producto...">
+
+        <button id="btn-vaciar" class="btn-vaciar">Vaciar inventario</button>
+
+        <div id="contenedor-productos"></div>
+    </div>
+
+</body>
+
+</html>
