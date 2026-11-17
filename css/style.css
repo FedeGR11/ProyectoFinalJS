@@ -159,6 +159,22 @@ input:focus {
   background-color: #3265d3;
 }
 
+.btn-editar-stock {
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.btn-editar-stock:hover {
+  background-color: #d68910;
+}
+
 /* Color de mensajes */
 .mensaje-exito {
   margin-top: 10px;

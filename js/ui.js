@@ -11,13 +11,14 @@ function renderizarProductos(lista) {
                 <p>Precio: $${precio}</p>
                 <p><span class="texto-stock">Stock: ${stock ?? 0}</span></p>
                 <button class="btn-editar" data-id="${id}">Editar precio</button>
+                <button class="btn-editar-stock" data-id="${id}">Editar stock</button>
                 <button class="btn-eliminar" data-id="${id}">Eliminar</button>
             </div>
          `;
     });
 }
 
-/*--- confirmacion SweetAlert --- */
+/*--- Confirmacion SweetAlert --- */
 
 function confirmarEliminacion(accionEliminar) {
     Swal.fire({
@@ -73,6 +74,33 @@ function confirmarEdicion(producto, guardarPrecio) {
             if (result.isConfirmed) guardarPrecio(parseFloat(result.value));
         });
 }
+
+function confirmarEdicionStock(producto, guardarStock) {
+    Swal.fire({
+        title: `Editar stock de "${producto.nombre}"`,
+        text: `Stock actual: ${producto.stock ?? 0}`,
+        input: "number",
+        inputValue: producto.stock ?? 0,
+        inputAttributes: {
+            min: 0,
+            step: "1" 
+        },
+        showCancelButton: true,
+        confirmButtonText: "Guardar",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#6c757d",
+        inputValidator: (value) => {
+            const stockValido = parseInt(value);
+            if (!value || isNaN(stockValido) || stockValido < 0) {
+                return "Por favor, ingrese un stock válido (0 o mayor).";
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) guardarStock(parseInt(result.value));
+    });
+}
+
 
 /* --- Toastify --- */
 

@@ -67,7 +67,7 @@ inputBusqueda.addEventListener("keyup", (e) => {
     actualizarVista();
 });
 
-/* --- Eliminar / Editar --- */
+/* --- Eliminar / Editar Precio / Editar Stock --- */
 
 contenedorProductos.addEventListener("click", (e) => {
     //  Eliminar
@@ -90,20 +90,38 @@ contenedorProductos.addEventListener("click", (e) => {
         });
     }
 
-// Editar
-if (e.target?.classList.contains("btn-editar")) {
-    const idAEditar = parseInt(e.target.getAttribute("data-id"));
-    const producto = productosJS.find(p => p.id === idAEditar);
-    if (!producto) {
-        mostrarToast("⚠️ Producto no encontrado para editar.", "#dc3545");
-        return;
-    }
-    
-    confirmarEdicion(producto, (nuevoPrecio) => {
+    // Editar Precio
+    if (e.target?.classList.contains("btn-editar")) {
+        const idAEditar = parseInt(e.target.getAttribute("data-id"));
+        const producto = productosJS.find(p => p.id === idAEditar);
+        if (!producto) {
+            mostrarToast("⚠️ Producto no encontrado para editar.", "#dc3545");
+            return;
+        }
+
+        confirmarEdicion(producto, (nuevoPrecio) => {
             producto.precio = nuevoPrecio;
             guardarLocalStorage();
             actualizarVista();
             mostrarToast(`✏️ Precio de "${producto.nombre}" actualizado a $${nuevoPrecio}.`);
+        });
+
+    }
+
+    // Editar Stock 
+    if (e.target?.classList.contains("btn-editar-stock")) {
+        const idAEditar = parseInt(e.target.getAttribute("data-id"));
+        const producto = productosJS.find(p => p.id === idAEditar);
+        if (!producto) {
+            mostrarToast("⚠️ Producto no encontrado para editar stock.", "#dc3545");
+            return;
+        }
+        
+        confirmarEdicionStock(producto, (nuevoStock) => {
+            producto.stock = nuevoStock;
+            guardarLocalStorage();
+            actualizarVista();
+            mostrarToast(`📦 Stock de "${producto.nombre}" actualizado a ${nuevoStock}.`);
         });
     }
 });
